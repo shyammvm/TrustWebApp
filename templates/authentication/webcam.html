@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<center>
+    <h5>Center yourself on screen.</h5>
+    <video id="video" width="640" height="480" autoplay></video>
+    <!-- <button id="snap">Snap Photo</button> -->
+    <center><button type="submit" class="btn btn-secondary btn-lg" ><a href="/verification">Verify</a></button></center>
+</center>
+<script>// Grab elements, create settings, etc.
+    var video = document.getElementById('video');
+    
+    // Get access to the camera!
+    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        // Not adding `{ audio: true }` since we only want video now
+        navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+            //video.src = window.URL.createObjectURL(stream);
+            video.srcObject = stream;
+            video.play();
+        });
+    }
+
+    // var context = canvas.getContext('2d');
+    // var video = document.getElementById('video');
+    // var canvas = document.getElementById('canvas');
+    // // Trigger photo take
+    // document.getElementById("snap").addEventListener("click", function() {
+	// context.drawImage(video, 0, 0, 640, 480);
+    // });
+    // // Converts canvas to an image
+    // function convertCanvasToImage(canvas) {
+	// var image = new Image();
+	// image.src = canvas.toDataURL("image/png");
+	// return image;
+    // }
+
+    // convertCanvasToImage(snap)
+    // // convertCanvasToImage(canvas)
+    </script>
+{% endblock content %} 
+
+

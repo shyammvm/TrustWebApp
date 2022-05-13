@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form method="post" action="/links" class="mb-2">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="fb_url">Facebook Link</label>
+        <input type="text" class="form-control" id="fb_url" name="fb_url" placeholder="Paste your Facebook profile link" Required>
+    </div><br>
+    <div class="form-group">
+        <label for="insta_url">Instagram <Link></Link></label>
+        <input type="insta_url" class="form-control" id="insta_url" name="insta_url" placeholder="Paste your Instagram profile link" Required>
+    </div><br>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+{% endblock content %} 

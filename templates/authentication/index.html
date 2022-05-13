@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    {% block content %}
+
+    
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<body>
+
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+    </div>
+    {% endfor %}
+
+    <!-- <h3>Welcome to GeeksForGeeks!</h3> -->
+
+
+    {% if user.is_authenticated %}
+    <h3>Hello {{ user.get_username }}!</h3>
+    <h4>You've successfully logged in.</h4>
+    <!-- <button type="submit" class="btn btn-primary"><a href="/signout">SignOut</a></button> -->
+    <!-- <button type="submit"><a href="/signout">SignOut</a></button> -->
+    <div class="card mb-3" style="max-width: 1500px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            {% if user.profile.profile_pic %}
+            <img src="{{user.profile.profile_pic.url}}" class="img-fluid rounded-start" alt="img">
+            {% endif %}
+            <!-- <a href="{{user.pofile.fb_url}}">Facebook</a> -->
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{user.username}}   {% if user.profile.verified %} <p class="text-success">(verified)</p> {% endif %}</h5>
+              <p class="card-text">{{user.email}}</p>
+              <p class="card-text"><small class="text-muted">Trust Score:{{user.profile.trustscore}}</small></p>
+              <p class="card-text"><small class="text-muted"><a href="{{user.pofile.fb_url}}">Facebook</a>   |   <a href="{{user.pofile.insta_url}}">Instagram</a></small></p>
+                <!-- <p class="card-text"><small class="text-muted"><a href="{{user.pofile.insta_url}}">Instagram</small></p> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% if user.profile.verified == False %}
+        <center><button type="submit" class="btn btn-secondary btn-lg" ><a href="/verify">Verify</a></button></center>
+      {% endif %}
+    <!-- {% if user.profile.profile_pic %}
+        <img src="{{user.profile.profile_pic.url}}" alt="img" --!>
+    {% endif %}
+    {% else %}
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <!-- <a class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true" href="/signup">Sign Up</a>
+        <a class="btn btn-secondary btn-lg disabled" role="button" aria-disabled="true" href="/signin">Sign In</a> -->
+        <button class="btn btn-outline-primary" type="submit" ><a href="/signup">SignUp</a></button>
+        <button class="btn btn-outline-primary" type="submit"><a href="/signin">SignIn</a></button>
+      </div>
+    <!-- <button type="submit"><a href="/signup">SignUp</a></button>
+    <br/>
+    <br/>
+    <button type="submit"><a href="/signin">SignIn</a></button> -->
+    {% endif %}
+ 
+    <!-- <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form> -->
+    <br>
+    <!-- <p><strong>-- OR --</strong></p> -->
+    <!-- <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
+{% endblock content %} 
+</body>
+</html>
+

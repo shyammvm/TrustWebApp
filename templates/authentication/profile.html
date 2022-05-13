@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card mb-3" style="max-width: 1500px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        {% if user.profile.profile_pic %}
+        <img src="{{page_user.profile.profile_pic.url}}" class="img-fluid rounded-start" alt="img">
+        {% endif %}
+
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{page_user.username}}  {% if page_user.profile.verified %} <p class="text-success">(verified)</p> {% endif %}</h5>
+          <p class="card-text">{{page_user.email}}</p>
+          <p class="card-text"><small class="text-muted">Trust Score:{{page_user.profile.trustscore}}</small></p>
+          <p class="card-text"><small class="text-muted"><a href="{{ page_user.pofile.fb_url }}">Facebook</a>   |   <a href="{{ page_user.pofile.insta_url }}">Instagram</a></small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock content %} 
