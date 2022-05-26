@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.core.mail import EmailMessage, send_mail
 from authentication.forms import ProfileForm
-from geeksforgeeks import settings
+from webtrustapp import settings
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
@@ -216,7 +216,7 @@ def verification(request):
     process = subprocess.Popen(['python','getfaces.py'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     
     # exitstatus = process.poll()
-    code2 = subprocess.Popen(['python','compare.py','opencv9.jpg','shyam.jpg'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    code2 = subprocess.Popen(['python','compare.py','opencv9.jpg',request.user.profile.profile_pic], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     output = code2.stdout.read()
     output = str(output)
     print(type(output))
